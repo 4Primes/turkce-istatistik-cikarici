@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>#{get 'title' /}</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
-        #{get 'moreStyles' /}
-        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="utf-8"></script>
-    
-        #{get 'moreScripts' /}
-        
-       #{script 'jquery-ui-1.8.14.custom.min.js'/}
-      
-        #{script 'raphael.js'/}
-        
-        #{script 'g.raphael.js'/}
-        
-        #{script 'g.pie.js'/}
-        
-        #{script 'g.line.js'/}
-        
-        #{script 'g.dot.js'/}
-        
-        #{script 'g.bar.js'/}
-       
-    </head>
-    <body>
-    </a><body style="background-color:Maroon;"><br><center>
-    
-  
-    
-    <h1 style="font-size:50px" ><i><b><center>ZEMBEREK KÜTÜPHANESİ</center> <b><i> </h1>
-        #{doLayout /}
-    </body>
+<head>
+<title>#{get 'title' /}</title>
+<meta charset="utf-8">
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/main.css'}">
+#{get 'moreStyles' /}
+<link rel="shortcut icon" type="image/png"
+	href="@{'/public/images/favicon.png'}">
+<script src="@{'/public/javascripts/jquery-1.5.2.min.js'}"
+	type="text/javascript" charset="utf-8"></script>
+
+#{get 'moreScripts' /} #{script 'jquery-ui-1.8.14.custom.min.js'/}
+
+#{script 'raphael.js'/} #{script 'g.raphael.js'/} #{script 'g.pie.js'/}
+
+#{script 'g.line.js'/} #{script 'g.dot.js'/} #{script 'g.bar.js'/}
+
+</head>
+<body>
+	</a>
+<body style="background-color: Maroon;">
+	<br>
+	<center>
+
+
+
+		<h1 style="font-size: 50px">
+			<i><b><center>ZEMBEREK KÜTÜPHANESİ</center> <b><i>
+		</h1>
+		#{doLayout /}
+</body>
 </html>

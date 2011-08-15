@@ -1,39 +1,36 @@
 #{extends 'main.html' /} #{set title:'Home' /}
-<h2><b>Kullanılan köklerin sıklık durumu:</b></h2></br>
+<h2>
+	<b>Kullanılan köklerin sıklık durumu:</b>
+</h2>
+</br>
 <ul>
-#{list items:kelimeSayi, as:'gecis'}
-<li>
-${gecis}
-</li>
-#{/list}
-</ul> 
+	#{list items:kelimeSayi, as:'gecis'}
+	<li>${gecis}</li> #{/list}
+</ul>
 <a href="@{Application.index()}">Back to form</a>
 
 
- <script type="text/javascript" charset="utf-8">
-           window.onload = function () {
-                var r = Raphael(200,300,700,700),
-                    fin = function () {
-                        this.flag = r.g.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
-                    },
-                    fout = function () {
-                        this.flag.animate({opacity: 0}, 300, function () {this.remove();});
-                    };
-             r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
-                
-                
-                var kelimeler=${kelimeDizisi.raw()};
-                var sayilar=${sayiDizisi.raw()};
-                var kelimeSayisi= kelimeler.length;
-                
-                for(i=0; i<kelimeSayisi; i++)
-                {                
-                r.g.text(130, 45+28*i, kelimeler.shift());
-                r.g.text(530, 45+29*i, sayilar[i]);
-                }
-                r.g.hbarchart(200, 30, 300, 30*kelimeSayisi, [sayilar]).hover(fin, fout);
-                
-                        };
-        </script>
+<script type="text/javascript" charset="utf-8">
+	window.onload = function() {
+		var r = Raphael(200, 300, 700, 700), fin = function() {
+			this.flag = r.g.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+		}, 
+		fout = function() {
+			this.flag.animate({opacity : 0}, 300, function() {this.remove();
+			});
+		};
+		r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
 
-  
+		var kelimeler = ${kelimeDizisi.raw()};
+		var sayilar = ${sayiDizisi.raw()};
+		var kelimeSayisi = kelimeler.length;
+
+		for (i = 0; i < kelimeSayisi; i++) {
+			r.g.text(130, 45 + 28 * i, kelimeler.shift());
+			r.g.text(530, 45 + 29 * i, sayilar[i]);
+		}
+		r.g.hbarchart(200, 30, 300, 30 * kelimeSayisi, [ sayilar ]).hover(fin,fout);
+
+	};
+</script>
+

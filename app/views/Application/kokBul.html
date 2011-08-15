@@ -1,11 +1,11 @@
 #{extends 'main.html' /} #{set title:'Home' /}
-<h2><b>Kelime kokleri:</b></h2></br>
+<h2>
+	<b>Kelime kokleri:</b>
+</h2>
+</br>
 
 <ul>
-#{list items:gecis, as:'koklerim'}
-<li>
-${koklerim.join('-')}
-</li>
-#{/list}
-</ul> 
+	#{list items:gecis, as:'koklerim'}
+	<li>${koklerim.join('-')}</li> #{/list}
+</ul>
 <a href="@{Application.index()}">Back to form</a>

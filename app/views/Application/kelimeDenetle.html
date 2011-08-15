@@ -1,16 +1,18 @@
 #{extends 'main.html' /}#{set title:'Home' /}
-<h1><b>Denetleme  sonuçlari:</b></h1></br>
+<h1>
+	<b>Denetleme sonuçlari:</b>
+</h1>
+</br>
 
 
 #{list items:denetle, as:'item'}
-<ul>
-${Arrays.toString(item)}
+<ul>${Arrays.toString(item)}
 </ul>
 #{/list}
 
 <a href="@{Application.index()}">Back to form</a>
 
-	
+
 
 
 

@@ -1,13 +1,12 @@
 #{extends 'main.html' /} #{set title:'Home' /}
-<h2><b>Ayristirma sonuclari:</b></h2></br>
+<h2>
+	<b>Ayristirma sonuclari:</b>
+</h2>
+</br>
 
 <ul>
-#{list items:ayrisimlar, as:'ayrisim'}
-	<li>
-	#{list items:ayrisim, as:'ayri'}
-		${ayri.join('-')}
+	#{list items:ayrisimlar, as:'ayrisim'}
+	<li>#{list items:ayrisim, as:'ayri'} ${ayri.join('-')} #{/list}</li>
 	#{/list}
-	</li>
-#{/list}
-</ul> 
+</ul>
 <a href="@{Application.index()}">Back to form</a>

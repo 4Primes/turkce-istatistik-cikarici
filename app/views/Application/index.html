@@ -1,25 +1,22 @@
 #{extends 'main.html' /} #{set title:'Home' /}
 
- 
- <form action="@{Application.kullanicidanAl()}" method="GET">
- <h3>Text girelim:</h3>
-  <textarea name="text" rows="10" cols="50"></textarea>
 
- <input type="submit"  />
- </form> 
+<form action="@{Application.kullanicidanAl()}" method="GET">
+	<h3>Text girelim:</h3>
+	<textarea name="text" rows="10" cols="50"></textarea>
 
- 
- <h3>Ya da dosyadan yükleyelim:</h3> </br>
- <form action="@{Application.dosyadanOku()}" method="POST"
-      enctype="multipart/form-data">
-
-<input type="file" name="dosyaadı">
-
-<input type="submit">
+	<input type="submit" />
 </form>
 
- #{if flash.error}
-    <p style="color:#c00">
-        ${flash.error}
-    </p>
-#{/if} 
+
+<h3>Ya da dosyadan yükleyelim:</h3>
+</br>
+<form action="@{Application.dosyadanOku()}" method="POST"
+	enctype="multipart/form-data">
+
+	<input type="file" name="dosyaadı"> <input type="submit">
+</form>
+
+#{if flash.error}
+<p style="color: #c00">${flash.error}</p>
+#{/if}

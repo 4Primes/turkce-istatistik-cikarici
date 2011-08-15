@@ -1,16 +1,14 @@
 #{extends 'main.html' /} #{set title:'Home' /}
-<h1><b>Cozumleme sonuclari:</b></h1></br>
+<h1>
+	<b>Cozumleme sonuclari:</b>
+</h1>
+</br>
 <ul>
-#{list items:gecis, as:'cozum'}
-<li>
-#{list items:cozum, as:'cozumler'}
-${cozumler}
-#{/list}
-</li>
-#{/list}
-</ul> 
+	#{list items:gecis, as:'cozum'}
+	<li>#{list items:cozum, as:'cozumler'} ${cozumler} #{/list}</li>
+	#{/list}
+</ul>
 <a href="@{Application.index()}">Back to form</a>
 
 
 
-	
