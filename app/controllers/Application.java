@@ -21,6 +21,9 @@ import play.data.validation.Required;
 import play.mvc.Controller;
 import com.sun.java.util.jar.pack.*;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class Application extends Controller {
     public static final Zemberek z = new Zemberek(new TurkiyeTurkcesi());
 
@@ -176,8 +179,15 @@ public class Application extends Controller {
             } else {
                 kelimeSayi.put(kelime, kelimeSayi.get(kelime) + 1);
             }
+            
         }
-        render("Application/sayiBul.html", kelimeSayi);
+        Set<String> keys= kelimeSayi.keySet();
+        Collection<Integer> values=kelimeSayi.values();
+        String kelimeDizisi = new Gson().toJson(keys);
+        System.out.print(keys);
+        String sayiDizisi = new Gson().toJson(values);
+        
+        render("Application/sayiBul.html", kelimeDizisi, sayiDizisi);
 
     }
 }
