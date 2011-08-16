@@ -9,10 +9,11 @@
 </ul>
 <a href="@{Application.index()}">Back to form</a>
 
+<div id="istatistik" style="margin: 10px 0 50px;"></div>
 
 <script type="text/javascript" charset="utf-8">
 	window.onload = function() {
-		var r = Raphael(200, 300, 700, 700), fin = function() {
+		var r = Raphael("istatistik", 700, 1000), fin = function() {
 			this.flag = r.g.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
 		}, 
 		fout = function() {
