@@ -25,12 +25,20 @@
 		var kelimeler = ${kelimeDizisi.raw()};
 		var sayilar = ${sayiDizisi.raw()};
 		var kelimeSayisi = kelimeler.length;
+	
+		var sayi = new Array();
+		
+		if(kelimeSayisi>20)
+			kelimeSayisi=20;
+			
+		for(j=0; j<kelimeSayisi; j++)
+				sayi[j]=sayilar[j];	
 
 		for (i = 0; i < kelimeSayisi; i++) {
 			r.g.text(130, 45 + 28 * i, kelimeler.shift());
-			r.g.text(530, 45 + 29 * i, sayilar[i]);
+			r.g.text(530, 45 + 28 * i, sayilar[i]);
 		}
-		r.g.hbarchart(200, 30, 300, 30 * kelimeSayisi, [ sayilar ]).hover(fin,fout);
+		r.g.hbarchart(200, 30, 300, 30 * kelimeSayisi, [ sayi ]).hover(fin,fout);
 	};
 </script>
 
