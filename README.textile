@@ -1,0 +1,59 @@
+h1. KULLANIM KLAVUZU	
+
+h2. Projenin Çalıştırılması:
+
+Bu uygulama bir Play uygulamasıdır. Bu nedenle, bu uygulamayı çalıştırmanız için öncelikle bir java derleyicisine ve play framework[1] kurulumuna sahip olmanız gerekir. 
+
+Projeyi bilgisayarınıza klonladıktan sonra, komut satırından projeyi klonladığınız dizine, *cd* (cd DosyaYolu) komutuyla ulaşın. Derleyici olarak, Eclipse IDE’sini kullanıyorsanız; Play’in bulunduğu dizini yazıp, *play clean, play deps ve play eclipsify* komutlarını sırayla uygulayın. Proje, bu aşamada Eclipse’e import edilmeye hazır. 
+Artık Eclipse’i açıp, Import ile klonladığınız bu projeyi seçererek, çalıştırabilirsiniz.
+
+Herhangi bir IDE’yi kullanmadan çalıştırmak istiyorsanız; yine komut satırından cd komutuyla projenin bulunduğu dizine ulaştıktan sonra, play’in bulunduğu dizinini yazıp *play run* komutu ile projeyi çalıştırabilirsiniz.
+
+
+Projeyi çalıştırdıktan sonra, kullandığınız browser’dan  "http://localhost:9000/":http://localhost:9000/  adresine gidip uygulamayı görebilirsiniz.
+
+
+fn1. Play’i;
+
+"http://www.playframework.org/":http://www.playframework.org/
+
+adresinden indirebilirsiniz.
+
+
+_NOT_: Play hakkında daha fazla bilgi ve yardım için; Play Framework Türkiye Google Grubu’nu takip edebilirsiniz. ( "http://groups.google.com/group/play-framework-tr":http://groups.google.com/group/play-framework-tr )
+
+
+h2. Uygulamanın Kullanılması:
+
+Bu uygulama, girilen metindeki kelimeleri, Türkçe doğal dil işleme kütüphanesi olan _Zemberek Kütüphanesi’ndeki_; Türkçe Dil Bilgisi kurallarından birkaçını kullanarak incelemek amacıyla oluşturulmuş bir uygulamadır.
+
+Giriş sayfasında, incelemek istediğiniz kelimelerin bulunduğu metni, elle ya da dosyadan girebilmeniz için seçenekler mevcut. Bu seçeneklerden birini kullandıktan sonra gelen sayfada, kelimeleri inceleyeceğiniz dil bilgisi kuralını seçebilirsiniz:
+
+
+p=. +Hecele+
+
+p=. +Kelime Ayristir+
+
+p=. +Kelime Cozumle+
+
+p=. +Kelime Denetle+
+
+p=. +Kelime Oner+
+
+p=. +ASCII'ya Donustur+
+
+p=. +KokBul+
+
+p=. +İstatistikleri Goster+
+
+
+*Hecele:* Metindeki kelimeleri hecelerine ayırarak gösterir.
+*Kelime Ayristir:* Kelimelerin köklerini eklerinden ayırır. Kelimedeki bütün kökleri ayrı ayrı inceler.
+*Kelime Cozumle:* Her bir kelimenin kökünü, kökün türünü ve eklerin türünü bulup, listeler.
+*Kelime Denetle:* Kelimelerin doğru yazılıp yazılmadığını denetler.
+*Kelime Oner:* Kelimelerin yanlış yazılma ihtimaline karşılık, doğru olabilecek bütün kelimeleri gösterir.
+*ASCII'ya Donustur:* Kelimeleri Türkçe karakterlerden arındırır.
+*Kokbul:* Kelimelerin sadece köklerini bulup, gösterir.
+*İstatistikleri Goster:* Metindeki köklerin bulunma sıklıklarını grafiğe döker. Grafik; yalnızca bulunma sıklığı en fazla olan ilk 20 kelimeyle sınırlandırılır.
+
+
