@@ -61,14 +61,8 @@ public class Application extends Controller {
 
 	public static String duzenle(String k) {
 
-		// k = k.replaceAll("\\W", " ").replaceAll("\\s+", " ");;
-		k = k.replace("...", " ");
-		k = k.replace(". ", " ");
-		k = k.replace("! ", " ");
-		k = k.replace("? ", " ");
-		k = k.replace(", ", " ");
-		k = k.replace("'", " ");
-		k = k.replace("\r", " ");
+		k = k.replaceAll("[^a-zA-ZğşıçüöĞÖÇŞÜİ]", " ").replaceAll("\\s+", " ");
+		;
 		return k;
 	}
 
