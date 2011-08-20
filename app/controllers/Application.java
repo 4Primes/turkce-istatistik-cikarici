@@ -163,15 +163,14 @@ public class Application extends Controller {
 		k = duzenle(k);
 		String[] dizi = k.split(" ");
 		KokBulucu kok = z.kokBulucu();
-		String[] gecis = null;
 		String[] kokler = null;
-		gecis = new String[dizi.length];
+		List<String> gecis = new ArrayList();
 
 		for (int i = 0; i < dizi.length; i++) {
 			kokler = kok.stringKokBul(dizi[i]);
 			try {
 				if (!"".equals(kokler[0]))
-					gecis[i] = kokler[0];
+					gecis.add(kokler[0]);
 			} catch (Exception e) {
 				Logger.error(e, "bir hata oluştu");
 			}
