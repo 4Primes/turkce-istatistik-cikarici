@@ -10,4 +10,5 @@ workspace/
 .classpath
 .project
 .settings/
+lib/
 

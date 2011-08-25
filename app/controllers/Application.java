@@ -2,7 +2,9 @@ package controllers;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,11 +18,25 @@ import net.zemberek.erisim.Zemberek;
 import net.zemberek.islemler.KokBulucu;
 import net.zemberek.tr.yapi.TurkiyeTurkcesi;
 import net.zemberek.yapi.Kelime;
+
 import play.Logger;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
 import com.google.gson.Gson;
+
+import org.apache.tika.Tika;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
+import org.apache.tika.sax.BodyContentHandler;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.SAXException;
+
+import java.io.InputStream;
+import java.io.FileInputStream;
 
 public class Application extends Controller {
 
@@ -37,25 +53,27 @@ public class Application extends Controller {
 			flash.error("Text girmeniz gerekiyor!");
 			index();
 		}
+		
 		render("Application/kullanicidanAl.html", text);
 	}
-
-	public static void dosyadanOku(@Required File dosyaadı) {
-
+	
+	    
+	public static void dosyadanOku(@Required File dosyaadı) throws IOException, SAXException, TikaException {
+	
 		if (validation.hasErrors()) {
 			flash.error("Dosya upload etmediniz!");
 			index();
 		}
-		String a = "";
-		try {
-			BufferedReader oku = new BufferedReader(new FileReader(dosyaadı));
+		
+		InputStream inputStream = new FileInputStream(dosyaadı);
+		Parser parser = new AutoDetectParser();
+		ContentHandler contenthandler = new BodyContentHandler(Integer.MAX_VALUE);
+		Metadata metadata = new Metadata();
+		ParseContext context = new ParseContext();
+		parser.parse(inputStream, contenthandler, metadata, context);
+		String a = contenthandler.toString();
 
-			while (oku.ready()) {
-				a += oku.readLine();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
 		render("Application/dosyadanOku.html", a);
 	}
 
@@ -164,7 +182,7 @@ public class Application extends Controller {
 		String[] dizi = k.split(" ");
 		KokBulucu kok = z.kokBulucu();
 		String[] kokler = null;
-		List<String> gecis = new ArrayList();
+		List<String> gecis = new ArrayList<String>();
 
 		for (int i = 0; i < dizi.length; i++) {
 			kokler = kok.stringKokBul(dizi[i]);

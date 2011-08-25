@@ -2,3 +2,5 @@
 
 require:
     - play
+    - org.apache.tika -> tika-parsers 0.9
+
