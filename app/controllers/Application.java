@@ -20,6 +20,7 @@ import net.zemberek.tr.yapi.TurkiyeTurkcesi;
 import net.zemberek.yapi.Kelime;
 
 import play.Logger;
+import play.cache.Cache;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
@@ -38,6 +39,8 @@ import org.xml.sax.SAXException;
 import java.io.InputStream;
 import java.io.FileInputStream;
 
+import utils.*;
+
 public class Application extends Controller {
 
 	public static final Zemberek z = new Zemberek(new TurkiyeTurkcesi());
@@ -46,6 +49,7 @@ public class Application extends Controller {
 
 		render();
 	}
+	
 
 	public static void kullanicidanAl(@Required String text) {
 
@@ -54,39 +58,61 @@ public class Application extends Controller {
 			index();
 		}
 		
+			Cache.delete(session.getId());
+			String product= Cache.get(session.getId(), String.class);
+			if(product==null) {
+	        Cache.set(session.getId(), text, "3h");
+			}
+		
 		render("Application/kullanicidanAl.html", text);
+}
+	
+	public static String getProduct(){
+		String product= Cache.get(session.getId(), String.class);
+		if(controlProduct(product))
+			return product;
+		return null;
 	}
 	
-	    
-	public static void dosyadanOku(@Required File dosyaadı) throws IOException, SAXException, TikaException {
+	public static boolean controlProduct(String product){
+		if(product==null){
+			flash.error("Text girmeniz gerekiyor!");
+			index();
+			return false;
+		}		
+		else 
+			return true;
+	}
+	
+	public static void dosyadanOku(@Required File dosya) throws Exception {
 	
 		if (validation.hasErrors()) {
 			flash.error("Dosya upload etmediniz!");
 			index();
 		}
-		
-		InputStream inputStream = new FileInputStream(dosyaadı);
+				
+		InputStream inputStream = new FileInputStream(dosya);
 		Parser parser = new AutoDetectParser();
 		ContentHandler contenthandler = new BodyContentHandler(Integer.MAX_VALUE);
 		Metadata metadata = new Metadata();
 		ParseContext context = new ParseContext();
 		parser.parse(inputStream, contenthandler, metadata, context);
-		String a = contenthandler.toString();
-
+		String text = contenthandler.toString();
+		
+		Cache.delete(session.getId());
+		String product= Cache.get(session.getId(), String.class);
+		if(product==null) {
+        Cache.set(session.getId(), text, "3h");
+		}
 	
-		render("Application/dosyadanOku.html", a);
+		render("Application/kullanicidanAl.html", text);
 	}
 
-	public static String duzenle(String k) {
 
-		k = k.replaceAll("[^a-zA-ZğşıçüöĞÖÇŞÜİ]", " ").replaceAll("\\s+", " ");
-		;
-		return k;
-	}
+	public static void heceler() {
 
-	public static void heceler(String k) {
-
-		k = duzenle(k);
+		String k =getProduct();
+		k = util.duzenle(k);
 		String dizi[] = k.split(" ");
 		List<String[]> hecelenmis = new ArrayList<String[]>();
 		for (String kelime : dizi) {
@@ -100,9 +126,10 @@ public class Application extends Controller {
 		render("Application/heceler.html", hecelenmis);
 	}
 
-	public static void kelimeAyristir(String k) {
+	public static void kelimeAyristir() {
 
-		k = duzenle(k);
+		String k =getProduct();
+		k = util.duzenle(k);
 		String[] dizi = k.split(" ");
 		List<List<String[]>> ayrisimlar = new ArrayList<List<String[]>>();
 		for (String kelime : dizi) {
@@ -111,9 +138,10 @@ public class Application extends Controller {
 		render("Application/kelimeAyristir.html", ayrisimlar);
 	}
 
-	public static void kelimeCozumle(String k) {
+	public static void kelimeCozumle() {
 
-		k = duzenle(k);
+		String k =getProduct();
+		k = util.duzenle(k);
 		String dizi[] = k.split(" ");
 		List<List<Kelime>> gecis = new ArrayList<List<Kelime>>();
 		Kelime[] cozumler = null;
@@ -125,15 +153,17 @@ public class Application extends Controller {
 		render("Application/kelimeCozumle.html", gecis);
 	}
 
-	public static void asciDonustur(String k) {
+	public static void asciDonustur() {
 
+		String k =getProduct();
 		String l = z.asciiyeDonustur(k);
 		render("Application/asciDonustur.html", l);
 	}
 
-	public static void oneriler(String k) {
-
-		k = duzenle(k);
+	public static void oneriler() {
+		
+		String k =getProduct();
+		k = util.duzenle(k);
 		String[] dizi = k.split(" ");
 		List<String[]> gecis = new ArrayList<String[]>();
 
@@ -143,9 +173,10 @@ public class Application extends Controller {
 		render("Application/oneriler.html", gecis);
 	}
 
-	public static void kelimeDenetle(String k) {
+	public static void kelimeDenetle() {
 
-		k = duzenle(k);
+		String k =getProduct();
+		k = util.duzenle(k);
 		String dizi[] = null;
 		dizi = k.split(" ");
 		int a = 0;
@@ -163,9 +194,10 @@ public class Application extends Controller {
 		render("Application/kelimeDenetle.html", denetle);
 	}
 
-	public static void kokBul(String k) {
+	public static void kokBul() {
 
-		k = duzenle(k);
+		String k =getProduct();
+		k = util.duzenle(k);
 		String[] dizi = k.split(" ");
 		KokBulucu kok = z.kokBulucu();
 		List<String[]> gecis = new ArrayList<String[]>();
@@ -176,9 +208,10 @@ public class Application extends Controller {
 		render("Application/kokBul.html", gecis);
 	}
 
-	public static void sayiBul(String k) {
+	public static void sayiBul() {
 
-		k = duzenle(k);
+		String k =getProduct();
+		k = util.duzenle(k);
 		String[] dizi = k.split(" ");
 		KokBulucu kok = z.kokBulucu();
 		String[] kokler = null;

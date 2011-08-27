@@ -1,7 +1,7 @@
 #{extends 'main.html' /} #{set title:'Home' /}
 
 
-<form action="@{Application.kullanicidanAl()}" method="GET">
+<form action="@{Application.kullanicidanAl()}" method="POST">
 	<h3>Text girelim:</h3>
 	<textarea name="text" rows="10" cols="50"></textarea>
 
@@ -14,7 +14,7 @@
 <form action="@{Application.dosyadanOku()}" method="POST"
 	enctype="multipart/form-data">
 
-	<input type="file" name="dosyaadı"> <input type="submit">
+	<input type="file" name="dosya"> <input type="submit">
 </form>
 
 #{if flash.error}

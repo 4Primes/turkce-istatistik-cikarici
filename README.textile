@@ -2,13 +2,14 @@ h1. KULLANIM KLAVUZU
 
 h2. Projenin Çalıştırılması:
 
-Bu uygulama bir Play uygulamasıdır. Bu nedenle, bu uygulamayı çalıştırmanız için öncelikle bir java derleyicisine ve play framework[1] kurulumuna sahip olmanız gerekir. 
+Bu uygulama bir Play uygulamasıdır. Bu nedenle, bu uygulamayı çalıştırmanız için öncelikle bir java derleyicisine ve play framework[1] kurulumuna sahip olmanız gerekir.
 
 Projeyi bilgisayarınıza klonladıktan sonra, komut satırından projeyi klonladığınız dizine, *cd* (cd DosyaYolu) komutuyla ulaşın. Derleyici olarak, Eclipse IDE’sini kullanıyorsanız; Play’in bulunduğu dizini yazıp, *play clean, play deps ve play eclipsify* komutlarını sırayla uygulayın. Proje, bu aşamada Eclipse’e import edilmeye hazır. 
 Artık Eclipse’i açıp, Import ile klonladığınız bu projeyi seçererek, çalıştırabilirsiniz.
 
 Herhangi bir IDE’yi kullanmadan çalıştırmak istiyorsanız; yine komut satırından cd komutuyla projenin bulunduğu dizine ulaştıktan sonra, play’in bulunduğu dizinini yazıp *play run* komutu ile projeyi çalıştırabilirsiniz.
 
+Projede kullanılan Zemberek Kütüphaneleri, zemberek klasörünün içinde bulunmaktadır, uygulamayı çalıştırabilmek için bu kütüphaneleri projenin Libraries kısmına eklemeniz gerekir.
 
 Projeyi çalıştırdıktan sonra, kullandığınız browser’dan  "http://localhost:9000/":http://localhost:9000/  adresine gidip uygulamayı görebilirsiniz.
 
