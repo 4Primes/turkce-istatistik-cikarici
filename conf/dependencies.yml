@@ -2,5 +2,14 @@
 
 require:
     - play
+    - provided -> zemberek-cekirdek 2.1.1
+    - provided -> zemberek-tr 2.1.1
     - org.apache.tika -> tika-parsers 0.9
+
+repositories:
+  - provided:
+      type:       local
+      artifact:   "${application.path}/jar/[module]-[revision].jar"
+      contains:
+        - provided -> *
 
