@@ -23,6 +23,7 @@ import play.Logger;
 import play.cache.Cache;
 import play.data.validation.Required;
 import play.mvc.Controller;
+import play.mvc.Util;
 
 import com.google.gson.Gson;
 
@@ -49,7 +50,6 @@ public class Application extends Controller {
 
 		render();
 	}
-	
 
 	public static void kullanicidanAl(@Required String text) {
 
@@ -57,40 +57,38 @@ public class Application extends Controller {
 			flash.error("Text girmeniz gerekiyor!");
 			index();
 		}
-		
-			Cache.delete(session.getId());
-			String product= Cache.get(session.getId(), String.class);
-			if(product==null) {
-	        Cache.set(session.getId(), text, "3h");
-			}
-		
-		render("Application/kullanicidanAl.html", text);
-}
-	
-	public static String getProduct(){
-		String product= Cache.get(session.getId(), String.class);
-		if(controlProduct(product))
+
+		Cache.delete(session.getId());
+		Cache.set(session.getId(), text, "3h");
+
+		render("Application/kullanicidanAl.html");
+	}
+
+	@Util
+	public static String getProduct() {
+		String product = Cache.get(session.getId(), String.class);
+		if (controlProduct(product))
 			return product;
 		return null;
 	}
-	
-	public static boolean controlProduct(String product){
-		if(product==null){
+
+	@Util
+	public static boolean controlProduct(String product) {
+		if (product == null) {
 			flash.error("Text girmeniz gerekiyor!");
 			index();
 			return false;
-		}		
-		else 
+		} else
 			return true;
 	}
-	
+
 	public static void dosyadanOku(@Required File dosya) throws Exception {
-	
+
 		if (validation.hasErrors()) {
 			flash.error("Dosya upload etmediniz!");
 			index();
 		}
-				
+
 		InputStream inputStream = new FileInputStream(dosya);
 		Parser parser = new AutoDetectParser();
 		ContentHandler contenthandler = new BodyContentHandler(Integer.MAX_VALUE);
@@ -98,21 +96,17 @@ public class Application extends Controller {
 		ParseContext context = new ParseContext();
 		parser.parse(inputStream, contenthandler, metadata, context);
 		String text = contenthandler.toString();
-		
-		Cache.delete(session.getId());
-		String product= Cache.get(session.getId(), String.class);
-		if(product==null) {
-        Cache.set(session.getId(), text, "3h");
-		}
-	
-		render("Application/kullanicidanAl.html", text);
-	}
 
+		Cache.delete(session.getId());
+		Cache.set(session.getId(), text, "3h");
+
+		render("Application/kullanicidanAl.html");
+	}
 
 	public static void heceler() {
 
-		String k =getProduct();
-		k = util.duzenle(k);
+		String k = getProduct();
+		k = utils.Util.duzenle(k);
 		String dizi[] = k.split(" ");
 		List<String[]> hecelenmis = new ArrayList<String[]>();
 		for (String kelime : dizi) {
@@ -128,8 +122,8 @@ public class Application extends Controller {
 
 	public static void kelimeAyristir() {
 
-		String k =getProduct();
-		k = util.duzenle(k);
+		String k = getProduct();
+		k = utils.Util.duzenle(k);
 		String[] dizi = k.split(" ");
 		List<List<String[]>> ayrisimlar = new ArrayList<List<String[]>>();
 		for (String kelime : dizi) {
@@ -140,8 +134,8 @@ public class Application extends Controller {
 
 	public static void kelimeCozumle() {
 
-		String k =getProduct();
-		k = util.duzenle(k);
+		String k = getProduct();
+		k = utils.Util.duzenle(k);
 		String dizi[] = k.split(" ");
 		List<List<Kelime>> gecis = new ArrayList<List<Kelime>>();
 		Kelime[] cozumler = null;
@@ -155,15 +149,15 @@ public class Application extends Controller {
 
 	public static void asciDonustur() {
 
-		String k =getProduct();
+		String k = getProduct();
 		String l = z.asciiyeDonustur(k);
 		render("Application/asciDonustur.html", l);
 	}
 
 	public static void oneriler() {
-		
-		String k =getProduct();
-		k = util.duzenle(k);
+
+		String k = getProduct();
+		k = utils.Util.duzenle(k);
 		String[] dizi = k.split(" ");
 		List<String[]> gecis = new ArrayList<String[]>();
 
@@ -175,8 +169,8 @@ public class Application extends Controller {
 
 	public static void kelimeDenetle() {
 
-		String k =getProduct();
-		k = util.duzenle(k);
+		String k = getProduct();
+		k = utils.Util.duzenle(k);
 		String dizi[] = null;
 		dizi = k.split(" ");
 		int a = 0;
@@ -196,8 +190,8 @@ public class Application extends Controller {
 
 	public static void kokBul() {
 
-		String k =getProduct();
-		k = util.duzenle(k);
+		String k = getProduct();
+		k = utils.Util.duzenle(k);
 		String[] dizi = k.split(" ");
 		KokBulucu kok = z.kokBulucu();
 		List<String[]> gecis = new ArrayList<String[]>();
@@ -210,8 +204,8 @@ public class Application extends Controller {
 
 	public static void sayiBul() {
 
-		String k =getProduct();
-		k = util.duzenle(k);
+		String k = getProduct();
+		k = utils.Util.duzenle(k);
 		String[] dizi = k.split(" ");
 		KokBulucu kok = z.kokBulucu();
 		String[] kokler = null;

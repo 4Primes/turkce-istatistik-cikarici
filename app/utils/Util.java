@@ -1,6 +1,6 @@
 package utils;
 
-public class util {
+public class Util {
 	
 	public static String duzenle(String k) {
 
