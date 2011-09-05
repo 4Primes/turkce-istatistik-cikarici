@@ -91,7 +91,8 @@ public class Application extends Controller {
 
 		InputStream inputStream = new FileInputStream(dosya);
 		Parser parser = new AutoDetectParser();
-		ContentHandler contenthandler = new BodyContentHandler(Integer.MAX_VALUE);
+		ContentHandler contenthandler = new BodyContentHandler(
+				Integer.MAX_VALUE);
 		Metadata metadata = new Metadata();
 		ParseContext context = new ParseContext();
 		parser.parse(inputStream, contenthandler, metadata, context);
@@ -212,12 +213,16 @@ public class Application extends Controller {
 		List<String> gecis = new ArrayList<String>();
 
 		for (int i = 0; i < dizi.length; i++) {
+
 			kokler = kok.stringKokBul(dizi[i]);
-			try {
-				if (!"".equals(kokler[0]))
-					gecis.add(kokler[0]);
-			} catch (Exception e) {
-				Logger.error(e, "bir hata oluştu");
+			if (kokler.length != 0) {
+				try {
+					if (!"".equals(kokler[0]))
+						gecis.add(kokler[0]);
+
+				} catch (Exception e) {
+					Logger.error(e, "bir hata oluştu");
+				}
 			}
 		}
 		Map<String, Integer> kelimeSayi = new HashMap<String, Integer>();
