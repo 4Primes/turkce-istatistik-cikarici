@@ -217,7 +217,7 @@ public class Application extends Controller {
 			kokler = kok.stringKokBul(dizi[i]);
 			if (kokler.length != 0) {
 				try {
-					if (!"".equals(kokler[0]))
+					if (kokler[0].length() > 2)
 						gecis.add(kokler[0]);
 
 				} catch (Exception e) {
