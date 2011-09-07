@@ -40,7 +40,7 @@ import org.xml.sax.SAXException;
 import java.io.InputStream;
 import java.io.FileInputStream;
 
-import utils.*;
+import static utils.Util.*;
 
 public class Application extends Controller {
 
@@ -63,16 +63,16 @@ public class Application extends Controller {
 	}
 
 	@Util
-	public static String getProduct() {
-		String product = Cache.get(session.getId(), String.class);
-		if (controlProduct(product))
-			return product;
+	public static String getText() {
+		String text = Cache.get(session.getId(), String.class);
+		if (controlText(text))
+			return text;
 		return null;
 	}
 
 	@Util
-	public static boolean controlProduct(String product) {
-		if (product == null) {
+	public static boolean controlText(String text) {
+		if (text == null) {
 			flash.error("Text girmeniz gerekiyor!");
 			index();
 			return false;
@@ -103,8 +103,8 @@ public class Application extends Controller {
 
 	public static void heceler() {
 
-		String k = getProduct();
-		k = utils.Util.duzenle(k);
+		String k = getText();
+		k = duzenle(k);
 		String dizi[] = k.split(" ");
 		List<String[]> hecelenmis = new ArrayList<String[]>();
 		for (String kelime : dizi) {
@@ -120,7 +120,7 @@ public class Application extends Controller {
 
 	public static void kelimeAyristir() {
 
-		String k = getProduct();
+		String k = getText();
 		k = utils.Util.duzenle(k);
 		String[] dizi = k.split(" ");
 		List<List<String[]>> ayrisimlar = new ArrayList<List<String[]>>();
@@ -132,7 +132,7 @@ public class Application extends Controller {
 
 	public static void kelimeCozumle() {
 
-		String k = getProduct();
+		String k = getText();
 		k = utils.Util.duzenle(k);
 		String dizi[] = k.split(" ");
 		List<List<Kelime>> gecis = new ArrayList<List<Kelime>>();
@@ -147,14 +147,14 @@ public class Application extends Controller {
 
 	public static void asciDonustur() {
 
-		String k = getProduct();
+		String k = getText();
 		String l = z.asciiyeDonustur(k);
 		render("Application/asciDonustur.html", l);
 	}
 
 	public static void oneriler() {
 
-		String k = getProduct();
+		String k = getText();
 		k = utils.Util.duzenle(k);
 		String[] dizi = k.split(" ");
 		List<String[]> gecis = new ArrayList<String[]>();
@@ -167,7 +167,7 @@ public class Application extends Controller {
 
 	public static void kelimeDenetle() {
 
-		String k = getProduct();
+		String k = getText();
 		k = utils.Util.duzenle(k);
 		String dizi[] = null;
 		dizi = k.split(" ");
@@ -188,7 +188,7 @@ public class Application extends Controller {
 
 	public static void kokBul() {
 
-		String k = getProduct();
+		String k = getText();
 		k = utils.Util.duzenle(k);
 		String[] dizi = k.split(" ");
 		KokBulucu kok = z.kokBulucu();
@@ -202,7 +202,7 @@ public class Application extends Controller {
 
 	public static void sayiBul() {
 
-		String k = getProduct();
+		String k = getText();
 		k = utils.Util.duzenle(k);
 		String[] dizi = k.split(" ");
 		KokBulucu kok = z.kokBulucu();
@@ -214,7 +214,7 @@ public class Application extends Controller {
 			kokler = kok.stringKokBul(dizi[i]);
 			if (kokler.length != 0) {
 				try {
-					if (kokler[0].length() > 2)
+					if (!gozArdiEt(kokler[0]))
 						gecis.add(kokler[0]);
 
 				} catch (Exception e) {
