@@ -1,11 +1,26 @@
 package utils;
 
 public class Util {
-	
-	public static String duzenle(String k) {
 
-		k = k.replaceAll("[^a-zA-ZğşıçüöĞÖÇŞÜİ]", " ").replaceAll("\\s+", " ");
-		return k;
-	}
+    private static final String[] GOZ_ARDI_LISTESI = { "sayın", "bay", "bayan", "bir", "iki", "ile", "veya", "gibi", "daha", "al", "ver", "gel",
+            "git" };
+
+    public static String duzenle(String k) {
+
+        k = k.replaceAll("[^a-zA-ZğşıçüöĞÖÇŞÜİ]", " ").replaceAll("\\s+", " ");
+        return k;
+    }
+
+    public static boolean gozArdiEt(String kelime) {
+
+        if (kelime == null || kelime.length() < 3)
+            return true;
+        for (String eleman : GOZ_ARDI_LISTESI) {
+            if (eleman.equals(kelime))
+                return true;
+        }
+
+        return false;
+    }
 
 }
