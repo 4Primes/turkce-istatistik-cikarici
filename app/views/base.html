@@ -1,0 +1,37 @@
+<html>
+<head>
+<script src="@{'/public/javascripts/jquery-1.5.2.min.js'}"
+	type="text/javascript" charset="utf-8"></script>
+
+#{get 'moreScripts' /} #{script 'jquery-ui-1.8.14.custom.min.js'/}
+
+#{script 'raphael.js'/} #{script 'g.raphael.js'/} #{script 'g.pie.js'/}
+
+#{script 'g.line.js'/} #{script 'g.dot.js'/} #{script 'g.bar.js'/}
+</head>
+<body>
+<div id="menu">
+<br>
+
+	<center>
+
+		<a href="@{Application.heceler()}">Hecele</a> <a
+			href="@{Application.kelimeAyristir()}">Kelime Ayristir</a> <a
+			href="@{Application.kelimeCozumle()}"> Kelime Cozumle</a> <a
+			href="@{Application.kelimeDenetle()}"> Kelime Denetle</a> <a
+			href="@{Application.oneriler()}"> Kelime Oner</a> <a
+			href="@{Application.asciDonustur()}">ASCII'ya Donustur</a> <a
+			href="@{Application.kokBul()}"> KokBul</a> <a
+			href="@{Application.index()}">Yeni yazı/dosya gir</a>
+			
+</div>
+
+<div style="font-size: 15px">
+
+	<center>
+	<b>#{doLayout /}</b>	
+</div>
+
+
+</body>
+</html>

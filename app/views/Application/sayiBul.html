@@ -1,12 +1,11 @@
-#{extends 'main.html' /} #{set title:'Home' /}
+#{extends 'base.html' /} #{set title:'Home' /}
 <h2>
+</br>
 	<b>Kullanılan köklerin sıklık durumu:</b>
 </h2>
-</br>
 
-<a href="@{Application.index()}">Back to form</a>
-
-<div id="istatistik" style="margin: 10px 0 50px;"></div>
+</div>
+<div id="istatistik" style="margin: 10px 170px 30px;"></div>
 
 <script type="text/javascript" charset="utf-8">
 	window.onload = function() {

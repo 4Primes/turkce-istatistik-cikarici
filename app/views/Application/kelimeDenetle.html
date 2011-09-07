@@ -1,4 +1,4 @@
-#{extends 'main.html' /}#{set title:'Home' /}
+#{extends 'base.html' /} #{set title:'Home' /}
 <h1>
 	<b>Denetleme sonuçlari:</b>
 </h1>
@@ -9,8 +9,6 @@
 <ul>${Arrays.toString(item)}
 </ul>
 #{/list}
-
-<a href="@{Application.index()}">Back to form</a>
 
 
 

@@ -1,4 +1,4 @@
-#{extends 'main.html' /} #{set title:'Home' /}
+#{extends 'base.html' /} #{set title:'Home' /}
 <h1>
 	<b>Cozumleme sonuclari:</b>
 </h1>
@@ -8,7 +8,6 @@
 	<li>#{list items:cozum, as:'cozumler'} ${cozumler} #{/list}</li>
 	#{/list}
 </ul>
-<a href="@{Application.index()}">Back to form</a>
 
 
 

@@ -47,7 +47,7 @@ public class Application extends Controller {
 	public static final Zemberek z = new Zemberek(new TurkiyeTurkcesi());
 
 	public static void index() {
-
+		Cache.delete(session.getId());
 		render();
 	}
 
@@ -58,10 +58,8 @@ public class Application extends Controller {
 			index();
 		}
 
-		Cache.delete(session.getId());
 		Cache.set(session.getId(), text, "3h");
-
-		render("Application/kullanicidanAl.html");
+		sayiBul();
 	}
 
 	@Util
@@ -98,10 +96,9 @@ public class Application extends Controller {
 		parser.parse(inputStream, contenthandler, metadata, context);
 		String text = contenthandler.toString();
 
-		Cache.delete(session.getId());
 		Cache.set(session.getId(), text, "3h");
 
-		render("Application/kullanicidanAl.html");
+		sayiBul();
 	}
 
 	public static void heceler() {
