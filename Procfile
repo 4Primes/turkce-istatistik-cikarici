@@ -1,0 +1,1 @@
+web:    play run --%id=heroku --http.port=$PORT $PLAY_OPTS
