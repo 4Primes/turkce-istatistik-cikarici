@@ -1,3 +1,8 @@
+# Ignore all dotfiles...
+.*
+# except for .gitignore
+!.gitignore
+
 db/
 tmp/
 nbproject/

@@ -3,7 +3,7 @@ package utils;
 public class Util {
 
     private static final String[] GOZ_ARDI_LISTESI = { "sayın", "bay", "bayan", "bir", "iki", "ile", "veya", "gibi", "daha", "al", "ver", "gel",
-            "git" };
+            "git", "için", "ama", "fakat", "ise", "ancak", "her", "hiç", "hep", "var", "yok" };
 
     public static String duzenle(String k) {
 
