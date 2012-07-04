@@ -1,3 +1,5 @@
+Demo uygulama için "http://turkce.herokuapp.com/":http://turkce.herokuapp.com/ adresini ziyaret ediniz.
+
 h1. KULLANIM KLAVUZU	
 
 h2. Projenin Çalıştırılması:
