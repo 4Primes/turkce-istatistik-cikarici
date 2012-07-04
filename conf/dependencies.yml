@@ -1,7 +1,7 @@
 # Application dependencies
 
 require:
-    - play
+    - play 1.2.5
     - provided -> zemberek-cekirdek 2.1.1
     - provided -> zemberek-tr 2.1.1
     - org.apache.tika -> tika-parsers 1.0
